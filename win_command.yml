@@ -1,0 +1,19 @@
+---
+# This playbook uses the win_ping module to test connectivity to Windows hosts
+- name: copy
+  hosts: win
+
+
+
+
+  tasks:
+   - name: ping
+     win_ping:
+   - name: copy eval stig folder to remote host
+     win_copy:
+       src: /home/logan/eval-stig/
+       dest: C:\eval-stig\
+   - name: Make test directory
+     win_command: powershell.exe -command mkdir C:\test
+   - name: reboot
+     win_command: powershell.exe -command shutdown -r
